@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Life Point Counter</string>
+    <string name="btn_tema_noc">Tema Nocturno</string>
 </resources>

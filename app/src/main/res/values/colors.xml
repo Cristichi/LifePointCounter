@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="dia.colorPrimary">#3F51B5</color>
+    <color name="dia.colorPrimaryDark">#303F9F</color>
+    <color name="dia.colorAccent">#FF4081</color>
+    <color name="noc.colorPrimary">#20295b</color>
+    <color name="noc.colorPrimaryDark">#1c255b</color>
+    <color name="noc.colorAccent">#8c232d</color>
 </resources>
