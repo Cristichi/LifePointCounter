@@ -9,7 +9,7 @@ import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
 
-    int LP1, LP2;
+    int LP1, LP2; //Probablemente cambie en un futuro, o no
 
     Switch swTema;
     boolean temaNocturno;
@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         temaNocturno = intent.getBooleanExtra("temaOscuro", false);
-        Log.d("XDDDD", "Tema nocturno: "+temaNocturno);
         if (temaNocturno)
             setTheme(R.style.TemaNocturno);
 
