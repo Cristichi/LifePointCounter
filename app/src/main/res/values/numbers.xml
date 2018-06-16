@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="lp_yugi">8000</integer>
+    <integer name="lp_fow">4000</integer>
+    <integer name="lp_magic">4000</integer>
+</resources>
