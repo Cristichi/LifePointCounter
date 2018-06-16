@@ -20,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
         temaNocturno = intent.getBooleanExtra("temaOscuro", false);
         if (temaNocturno)
             setTheme(R.style.TemaNocturno);
+        else
+            setTheme(R.style.TemaDiurno);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LP1 = LP2 = 8000; //Se cambiará en un futuro XD
+        LP1 = LP2 = getResources().getInteger(R.integer.lp_yugi); //Se cambiará en un futuro XD
 
         swTema = findViewById(R.id.swTema);
         if (temaNocturno)
