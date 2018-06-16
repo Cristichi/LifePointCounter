@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">Life Point Counter</string>
+    <string name="app_name">Life Points Counter</string>
+    <string name="menu">Menú</string>
+    <string name="volver">Volver</string>
     <string name="btn_tema_noc">Tema Nocturno</string>
+    <string name="nombre_ygo">Yu-Gi-Oh</string>
+    <string name="nombre_fow">Force of Will</string>
+    <string name="nombre_magic">Magic the Gathering</string>
 </resources>
