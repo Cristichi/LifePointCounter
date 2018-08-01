@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="elegir_juego">Empieza el Juego</string>
+    <string name="volver">Volver</string>
+    <string name="btn_tema_nocturno">Tema Nocturno</string>
+    <string name="btn_tema_diurno">Tema Diurno</string>
+    <string name="otras_opciones">Otros</string>
+    <string name="btn_ajustes">Ajustes</string>
+    <string name="btn_acerca_de">Sobre Nosotros</string>
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="stt_modo_nocturno">Modo Nocturno</string>
+    <string name="stt_notes_mode">Modo "Notas"</string>
+    <string name="stt_p1_name">Nombre del Jugador 1</string>
+    <string name="stt_p1_name_default_value">Jugador 1</string>
+</resources>
