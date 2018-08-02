@@ -1,6 +1,7 @@
 package com.cristichi.jony.lifepointcounter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,9 @@ import android.widget.Toast;
 
 import com.cristichi.jony.lifepointcounter.modonormal.ContadorActivity;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences sp;
 
     MainActivity este = this;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button btnAjustes = new Button(this);
-        btnAjustes.setText(getResources().getString(R.string.btn_ajustes));
+        btnAjustes.setText(getResources().getString(R.string.ajustes));
         btnAjustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,28 +63,37 @@ public class MainActivity extends AppCompatActivity {
         });
         ll.addView(btnAcercaDe);
 
+        //AJUSTEEEEEEEEEEEEEEEEES, PREFERENCIAS, OPCIONES O LO QUE HAGA FALTA
+
         Resources res = getResources();
-        Ajuste.ajustesString = new ArrayList<>();
-        Ajuste.ajustesString.add(new Ajuste<>(res.getString(R.string.stt_p1_name),
-                res.getString(R.string.stt_p1_name_default_value)));
+        Ajustes.ajuste_tema = res.getString(R.string.stt_tema);
+        Ajustes.ajuste_modo_notas = res.getString(R.string.stt_notes_mode);
+        Ajustes.ajuste_nombre_j1 = res.getString(R.string.stt_p1_name);
+        Ajustes.ajuste_nombre_j1_defecto = res.getString(R.string.stt_p1_name_default_value);
 
-        Ajuste.ajustesBoolean = new ArrayList<>();
-        Ajuste.ajustesBoolean.add(new Ajuste<>(res.getString(R.string.stt_notes_mode),
-                false));
-        Ajuste.ajustesBoolean.add(new Ajuste<>(res.getString(R.string.stt_modo_nocturno),
-                false));
+        Tema.temaDiurno = new Tema(res.getString(R.string.tema_diurno), R.style.TemaDiurno);
+        Tema.temaNocturno = new Tema(res.getString(R.string.tema_nocturno), R.style.TemaNocturno);
 
+        sp = getSharedPreferences(Ajustes.archivo, MODE_PRIVATE);
+        if (!sp.contains(Ajustes.archivo)){
+            SharedPreferences.Editor editSp = sp.edit();
+            editSp.putBoolean(Ajustes.ajuste_modo_notas, false);
+            editSp.putInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema());
+            editSp.putString(Ajustes.ajuste_nombre_j1, Ajustes.ajuste_nombre_j1_defecto);
+            editSp.apply();
+        }
+
+        setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
     }
 
     private void abrirJuego(int vidaInicial){
         Resources res = getResources();
         Intent intento;
-        if (Ajuste.getAjusteBooleano(res.getString(R.string.stt_notes_mode))){
+        if (sp.getBoolean(res.getString(R.string.stt_notes_mode), false)){
             intento = new Intent(this, ContadorActivity.class);
         }else{
             intento = new Intent(this, ContadorActivity.class);
         }
-        intento.putExtra("tema_oscuro", Ajuste.getAjusteBooleano(res.getString(R.string.stt_modo_nocturno)));
         intento.putExtra("vida_inicial", vidaInicial);
         intento.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intento);
