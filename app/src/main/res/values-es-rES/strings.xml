@@ -15,4 +15,8 @@
     <!-- Temas -->
     <string name="tema_nocturno">Tema Nocturno</string>
     <string name="tema_diurno">Tema Diurno</string>
+
+    <!-- Utilidades -->
+    <string name="dado">Dado</string>
+    <string name="moneda">Moneda</string>
 </resources>

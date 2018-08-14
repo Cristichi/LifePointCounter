@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -21,8 +22,10 @@
         <activity
             android:name=".modonormal.ContadorActivity"
             android:label="@string/app_name" />
-        <activity android:name=".SettingsActivity"
-            android:label="@string/ajustes" ></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/ajustes" />
+        <activity android:name=".UtilidadesActivity"></activity>
     </application>
 
 </manifest>
