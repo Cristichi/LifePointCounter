@@ -1,97 +1,59 @@
 package com.cristichi.jony.lifepointcounter;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    HashMap<String, EditText> textos;
-    HashMap<String, ToggleButton> botones;
+    SharedPreferences sp;
 
     Button btnVolver;
     LinearLayout tabla;
+
+    Spinner spnnTemas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        textos = new HashMap<>();
-        botones = new HashMap<>();
+        sp = getSharedPreferences(Ajustes.archivo, MODE_PRIVATE);
+
+        setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
 
         btnVolver = findViewById(R.id.btnVolverAjustes);
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Ajuste<String>> alas = Ajuste.ajustesString;
-                for (int i = 0; i < alas.size(); i++) {
-                    String nombre = alas.get(i).getNombre();
-                    if (textos.containsKey(nombre)){
-                        String txt = textos.get(nombre).getText().toString();
-                        if (!txt.isEmpty()){
-                            alas.get(i).setValor(txt);
-                        }
-                    }
-                }
-                ArrayList<Ajuste<Boolean>> alab = Ajuste.ajustesBoolean;
-                for (int i = 0; i < alab.size(); i++) {
-                    String nombre = alab.get(i).getNombre();
-                    if (botones.containsKey(nombre)){
-                        alab.get(i).setValor(botones.get(nombre).isChecked());
-                    }
-                }
-
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt(Ajustes.ajuste_tema, ((Tema)spnnTemas.getSelectedItem()).getTema());
+                editor.apply();
                 finish();
             }
         });
 
         tabla = findViewById(R.id.tabla);
 
-        Iterator<Ajuste<String>> itS = Ajuste.ajustesString.iterator();
-        while(itS.hasNext()){
-            Ajuste<String> ajuste = itS.next();
-            LinearLayout ll = new LinearLayout(this);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-
-            TextView tv = new TextView(this);
-            tv.setText(ajuste.getNombre());
-            ll.addView(tv);
-
-            EditText et = new EditText(this);
-            et.setHint(ajuste.getValor());
-            ll.addView(et);
-            tabla.addView(ll);
-
-            textos.put(ajuste.getNombre(), et);
-        }
-
-        Iterator<Ajuste<Boolean>> itB = Ajuste.ajustesBoolean.iterator();
-        while (itB.hasNext()){
-            Ajuste<Boolean> ajuste = itB.next();
-            LinearLayout ll = new LinearLayout(this);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-
-            TextView tv = new TextView(this);
-            tv.setText(ajuste.getNombre());
-            ll.addView(tv);
-
-            ToggleButton tb = new ToggleButton(this);
-            tb.setText(ajuste.getNombre());
-            tb.setChecked(ajuste.getValor());
-            ll.addView(tb);
-            tabla.addView(ll);
-
-            botones.put(ajuste.getNombre(), tb);
+        spnnTemas = findViewById(R.id.spnnTemas);
+        ArrayList<Tema> temas = new ArrayList<>();
+        temas.add(Tema.temaDiurno);
+        temas.add(Tema.temaNocturno);
+        spnnTemas.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, temas));
+        int temaId = sp.getInt(Ajustes.ajuste_tema, 0);
+        if (temaId==Tema.temaDiurno.getTema()){
+            spnnTemas.setSelection(0);
+        }else if (temaId==Tema.temaNocturno.getTema()){
+            spnnTemas.setSelection(1);
+        }else {
+            throw new IllegalArgumentException("Theme "+temaId+" not found");
         }
     }
 }
