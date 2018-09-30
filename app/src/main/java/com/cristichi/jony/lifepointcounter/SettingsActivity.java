@@ -27,14 +27,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         sp = getSharedPreferences(Ajustes.archivo, MODE_PRIVATE);
 
-        setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
-
         btnVolver = findViewById(R.id.btnVolverAjustes);
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putInt(Ajustes.ajuste_tema, ((Tema)spnnTemas.getSelectedItem()).getTema());
+
                 editor.apply();
                 finish();
             }
@@ -42,18 +40,5 @@ public class SettingsActivity extends AppCompatActivity {
 
         tabla = findViewById(R.id.tabla);
 
-        spnnTemas = findViewById(R.id.spnnTemas);
-        ArrayList<Tema> temas = new ArrayList<>();
-        temas.add(Tema.temaDiurno);
-        temas.add(Tema.temaNocturno);
-        spnnTemas.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, temas));
-        int temaId = sp.getInt(Ajustes.ajuste_tema, 0);
-        if (temaId==Tema.temaDiurno.getTema()){
-            spnnTemas.setSelection(0);
-        }else if (temaId==Tema.temaNocturno.getTema()){
-            spnnTemas.setSelection(1);
-        }else {
-            throw new IllegalArgumentException("Theme "+temaId+" not found");
-        }
     }
 }

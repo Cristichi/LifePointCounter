@@ -66,24 +66,17 @@ public class MainActivity extends AppCompatActivity {
         //AJUSTEEEEEEEEEEEEEEEEES, PREFERENCIAS, OPCIONES O LO QUE HAGA FALTA
 
         Resources res = getResources();
-        Ajustes.ajuste_tema = res.getString(R.string.stt_tema);
         Ajustes.ajuste_modo_notas = res.getString(R.string.stt_notes_mode);
         Ajustes.ajuste_nombre_j1 = res.getString(R.string.stt_p1_name);
         Ajustes.ajuste_nombre_j1_defecto = res.getString(R.string.stt_p1_name_default_value);
-
-        Tema.temaDiurno = new Tema(res.getString(R.string.tema_diurno), R.style.TemaDiurno);
-        Tema.temaNocturno = new Tema(res.getString(R.string.tema_nocturno), R.style.TemaNocturno);
 
         sp = getSharedPreferences(Ajustes.archivo, MODE_PRIVATE);
         if (!sp.contains(Ajustes.archivo)){
             SharedPreferences.Editor editSp = sp.edit();
             editSp.putBoolean(Ajustes.ajuste_modo_notas, false);
-            editSp.putInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema());
             editSp.putString(Ajustes.ajuste_nombre_j1, Ajustes.ajuste_nombre_j1_defecto);
             editSp.apply();
         }
-
-        setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
 
         //Intent intento = new Intent(this, UtilidadesActivity.class);
         //startActivity(intento);

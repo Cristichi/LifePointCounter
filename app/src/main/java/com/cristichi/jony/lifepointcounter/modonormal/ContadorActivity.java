@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.cristichi.jony.lifepointcounter.Ajustes;
 import com.cristichi.jony.lifepointcounter.R;
-import com.cristichi.jony.lifepointcounter.Tema;
 
 public class ContadorActivity extends AppCompatActivity {
 
@@ -26,8 +25,6 @@ public class ContadorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contador);
         sp = getSharedPreferences(Ajustes.archivo, MODE_PRIVATE);
-
-        setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
 
         Intent intento = getIntent();
         if (intento.hasExtra("vida_inicial")) {
