@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
         setTheme(sp.getInt(Ajustes.ajuste_tema, Tema.temaDiurno.getTema()));
 
-        Intent intento = new Intent(this, UtilidadesActivity.class);
-        startActivity(intento);
+        //Intent intento = new Intent(this, UtilidadesActivity.class);
+        //startActivity(intento);
     }
 
     private void abrirJuego(int vidaInicial){
