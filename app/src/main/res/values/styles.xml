@@ -1,15 +1,3 @@
 <resources>
 
-    <style name="TemaDiurno" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/dia.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/dia.colorPrimaryDark</item>
-        <item name="colorAccent">@color/dia.colorAccent</item>
-    </style>
-
-    <style name="TemaNocturno" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/noc.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/noc.colorPrimaryDark</item>
-        <item name="colorAccent">@color/noc.colorAccent</item>
-    </style>
-
 </resources>
